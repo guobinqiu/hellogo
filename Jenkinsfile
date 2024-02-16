@@ -1,8 +1,14 @@
 pipeline {
     agent any
+
     tools {
         go 'go_1.20.6'
     }
+    
+    enviroment {
+        GOPROXY='https://goproxy.cn,direct'
+    }
+
     stages {
         stage('Build') {
             steps {
