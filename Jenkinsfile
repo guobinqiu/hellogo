@@ -5,7 +5,7 @@ pipeline {
         go 'go_1.20.6'
     }
     
-    enviroment {
+    environment {
         GOPROXY='https://goproxy.cn,direct'
     }
 
