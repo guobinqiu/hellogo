@@ -6,7 +6,7 @@ pipeline {
     }
     
     environment {
-        GOPROXY='https://goproxy.cn,direct'
+        GOPROXY = 'https://goproxy.cn,direct'
     }
 
     stages {
