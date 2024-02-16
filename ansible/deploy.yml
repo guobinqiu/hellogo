@@ -8,6 +8,7 @@
         dest: "/home/guobin/hellogo"
     - name: Stop running go
       command: pkill hellogo
+      ignore_errors: yes
     - name: Start go
       command: 
         cmd: ./hellogo
