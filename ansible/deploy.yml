@@ -1,6 +1,5 @@
 - hosts: go
   gather_facts: no
-  become: yes
   tasks:
     - name: Copy go binary to remote 
       copy:
