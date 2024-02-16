@@ -1,0 +1,14 @@
+- hosts: go
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Copy go binary to remote 
+      copy:
+        src: "{{ artifact }}"
+        dest: "/home/guobin/hellogo"
+    - name: Stop running go
+      command: pkill hellogo
+    - name: Start go
+      command: 
+        cmd: ./hellogo
+        chdir: /home/guobin
