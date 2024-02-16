@@ -7,6 +7,7 @@
         src: "{{ artifact }}"
         dest: "/home/guobin/hellogo"
         mode: '0644'
+      become: yes  
     - name: Stop running go
       command: pkill hellogo
       ignore_errors: yes
