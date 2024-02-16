@@ -1,0 +1,9 @@
+[Unit]
+Description=My Go Application
+
+[Service]
+ExecStart=/home/guobin/hellogo
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
