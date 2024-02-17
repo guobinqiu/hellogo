@@ -8,12 +8,12 @@ import (
 )
 
 func helloWorld(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, world!")
+	fmt.Fprintf(w, "Hello, Golang!")
 }
 
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", helloWorld).Methods("GET")
 
-	http.ListenAndServe(":8080", router)
+	http.ListenAndServe(":8000", router)
 }
