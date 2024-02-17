@@ -5,6 +5,7 @@
       copy:
         src: "{{ artifact }}"
         dest: "/home/guobin/hellogo"
+        mode: '0755'
     - name: Register hellogo as service
       copy:
         src: hellogo.service
