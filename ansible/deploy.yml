@@ -9,7 +9,7 @@
     - name: Copy artifact to remote
       copy:
         src: "{{ artifact }}"
-        dest: "./hellogo"
+        dest: "./hellogo/hellogo"
       when: artifact is defined
     - name: Copy conf to systemd
       copy:
