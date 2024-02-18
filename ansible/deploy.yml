@@ -9,12 +9,12 @@
     - name: Copy artifact to remote
       copy:
         src: "{{ artifact }}"
-        dest: "./hellogo"
+        dest: "./hellogo/hellogo"
       when: artifact is defined
     - name: Copy conf to systemd
       copy:
-        src: "hellogo.service"
-        dest: "/etc/systemd/system/hellogo.service"
+        src: 'hellogo.service'
+        dest: '/etc/systemd/system/hellogo.service'
       become: yes
       notify: Reload systemd #仅当hellogo.service有变化时才会执行Reload systemd
     - meta: flush_handlers # 改变执行顺序,handler会在所有主任务都完成后再执行,为了在Restart service前执行Reload systemd
