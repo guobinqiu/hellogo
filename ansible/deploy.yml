@@ -4,15 +4,15 @@
     - name: Copy dir to remote 
       synchronize:
         src: "{{ build_dir }}"
-        dest: "."
+        dest: '.'
         rsync_opts:
-          - "--exclude=.target"
+          - '--exclude=.target'
       when: build_dir is defined
     - name: Copy artifact to remote
       copy:
         src: "{{ artifact }}"
-        dest: "./hellogo/hellogo"
-        mode: "0755"
+        dest: './hellogo/hellogo'
+        mode: '0755'
       when: artifact is defined
     - name: Copy conf to systemd
       copy:
