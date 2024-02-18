@@ -10,6 +10,7 @@
       copy:
         src: "{{ artifact }}"
         dest: "./hellogo/hellogo"
+        mode: "0755"
       when: artifact is defined
     - name: Copy conf to systemd
       copy:
