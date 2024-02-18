@@ -16,9 +16,8 @@ pipeline {
             }
         }
         stage('Archive') {
-            step {
+            steps {
                 archiveArtifacts artifacts: "hellogo-${GIT_COMMIT}", fingerprint: true
-
             }
         }
         stage('Deploy with Ansible') {
