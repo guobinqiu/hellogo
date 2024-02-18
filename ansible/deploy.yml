@@ -5,6 +5,8 @@
       synchronize:
         src: "{{ build_dir }}"
         dest: "."
+        exclude:
+          - '.target'
       when: build_dir is defined
     - name: Copy artifact to remote
       copy:
