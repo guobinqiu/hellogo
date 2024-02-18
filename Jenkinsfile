@@ -12,8 +12,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'rm -rf .target'
-                sh 'go build -o .target/hellogo-${GIT_COMMIT} main.go'
+                sh 'rm -rf .target' //清理旧打包
+                sh 'go build -o .target/hellogo-${GIT_COMMIT} main.go' //打包
                 archiveArtifacts artifacts: ".target/hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
             }
         }
