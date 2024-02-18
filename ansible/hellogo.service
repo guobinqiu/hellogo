@@ -2,7 +2,7 @@
 Description=My Go Application
 
 [Service]
-ExecStart=/home/guobin/hellogo
+ExecStart=/home/guobin/hellogo/hellogo
 Restart=always
 StandardOutput=journal+console
 StandardError=inherit
