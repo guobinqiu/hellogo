@@ -29,6 +29,7 @@ pipeline {
                         -u guobin \
                         -e "ansible_ssh_private_key_file=${SSH_KEY}" \
                         -e "build_dir=../../hellogo" \
+                        -e "artifact=../hellogo" \
                         -e "ansible_become_password=${ANSIBLE_BECOME_PASS}" \
                         -i ansible/inventory.ini \
                         ansible/deploy.yml
