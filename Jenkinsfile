@@ -12,12 +12,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'rm hellogo-*'
                 sh 'go build -o hellogo-${GIT_COMMIT} main.go'
-            }
-        }
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: "hellogo-${GIT_COMMIT}", fingerprint: true
+                archiveArtifacts artifacts: "hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
             }
         }
         stage('Deploy with Ansible') {
