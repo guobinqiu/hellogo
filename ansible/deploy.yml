@@ -3,7 +3,7 @@
   tasks:
     - name: Copy hellogo to remote 
       synchronize:
-        src: "{{ builddir }}"
+        src: "{{ build_dir }}"
         dest: "."
     - name: Copy config to systemd
       shell: cp ./hellogo/ansible/hellogo.service /etc/systemd/system/hellogo.service
