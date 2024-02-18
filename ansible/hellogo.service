@@ -4,6 +4,8 @@ Description=My Go Application
 [Service]
 ExecStart=/home/guobin/hellogo
 Restart=always
+StandardOutput=journal+console
+StandardError=inherit
 
 [Install]
 WantedBy=multi-user.target

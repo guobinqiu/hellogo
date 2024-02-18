@@ -1,24 +1,12 @@
 pipeline {
     agent any
-
     tools {
         go 'go_1.20.6'
     }
-    
-    environment {
-        GOPROXY = 'https://goproxy.cn,direct'
-    }
-
     stages {
         stage('Build') {
             steps {
                 sh 'go build -o hellogo-${GIT_COMMIT} main.go'
-            }
-        }
-        stage('Archive') {
-            step {
-                archiveArtifacts artifacts: "hellogo-${GIT_COMMIT}", fingerprint: true
-
             }
         }
         stage('Deploy with Ansible') {
@@ -31,7 +19,7 @@ pipeline {
                         ansible-playbook \
                         -u guobin \
                         -e "ansible_ssh_private_key_file=${SSH_KEY}" \
-                        -e "artifact=../../hellogo" \
+                        -e "builddir=../../hellogo" \
                         -e "ansible_become_password=${ANSIBLE_BECOME_PASS}" \
                         -i ansible/inventory.ini \
                         ansible/deploy.yml

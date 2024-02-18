@@ -3,12 +3,11 @@
   tasks:
     - name: Copy hellogo to remote 
       copy:
-        src: "{{ artifact }}"
-        dest: "/home/guobin/hellogo"
-        mode: '0755'
+        src: "{{ builddir }}"
+        dest: "."
     - name: Register hellogo as service
       copy:
-        src: hellogo.service
+        src: ./hellogo/ansible/hellogo.service
         dest: /etc/systemd/system/hellogo.service
       become: yes
       notify: Reload systemd #仅当hellogo.service有变化时才会执行Reload systemd
