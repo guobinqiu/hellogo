@@ -2,7 +2,7 @@
   gather_facts: no
   tasks:
     - name: Copy hellogo to remote 
-      sychronize:
+      synchronize:
         src: "{{ builddir }}"
         dest: "."
     - name: Copy config to systemd
