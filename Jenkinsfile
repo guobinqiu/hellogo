@@ -12,10 +12,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'rm -f hellogo'
+                sh 'rm -f hellogo-*'
                 sh 'go build -o hellogo-${GIT_COMMIT} main.go'
                 archiveArtifacts artifacts: "hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
-                sh 'mv hellogo-${GIT_COMMIT} hellogo'
             }
         }
         stage('Deploy with Ansible') {
@@ -29,7 +28,7 @@ pipeline {
                         -u guobin \
                         -e "ansible_ssh_private_key_file=${SSH_KEY}" \
                         -e "build_dir=../../hellogo" \
-                        -e "artifact=../hellogo" \
+                        -e "artifact=../hellogo-${GIT_COMMIT}" \
                         -e "ansible_become_password=${ANSIBLE_BECOME_PASS}" \
                         -i ansible/inventory.ini \
                         ansible/deploy.yml
