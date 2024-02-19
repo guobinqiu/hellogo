@@ -17,6 +17,13 @@ pipeline {
                 archiveArtifacts artifacts: ".target/hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
             }
         }
+        stage('Static Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube_server') {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
         stage('Deploy with Ansible') {
             steps {
                 withCredentials([
