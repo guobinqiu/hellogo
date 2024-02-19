@@ -19,11 +19,9 @@ pipeline {
         }
         stage('Static Analysis') {
             steps {
-                script {
-                    def scannerHome = tool 'sonarqube_scanner'
-                    withSonarQubeEnv('sonarqube_server') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                //withSonarQubeEnv是SonarQube Jenkins插件提供的一个函数
+                withSonarQubeEnv('sonarqube_server') {
+                    sh '/opt/sonar-scanner/bin/sonar-scanner'
                 }
             }
         }
