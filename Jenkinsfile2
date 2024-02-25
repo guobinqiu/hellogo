@@ -7,7 +7,7 @@ pipeline {
     
     environment {
         GOPROXY = 'https://goproxy.cn,direct'
-        KUBECONFIG = '/var/lib/jenkins/.kube/config'
+        // KUBECONFIG = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
@@ -40,9 +40,9 @@ pipeline {
                 // }
 
                 //withKubeConfig是Kubernetes CLI Plugin插件提供的一个函数
-                //withKubeConfig(credentialsId: '35b0ef8a-e4e7-4c14-8738-2adf2a3a54d0', serverUrl: 'https://lb.kubesphere.local:6443') {
+                withKubeConfig(credentialsId: '35b0ef8a-e4e7-4c14-8738-2adf2a3a54d0', credentialsType: 'Text') {
                     sh 'kubectl apply -f hellogo.yaml'
-                //}
+                }
             }
         }
     }
