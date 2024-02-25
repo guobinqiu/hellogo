@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    tools {
+        go 'go_1.20.6'
+    }
+    
+    environment {
+        GOPROXY = 'https://goproxy.cn,direct'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'go build main.go' //只是为了保证编译通过
+            }
+        }
+        stage('Static Analysis') {
+            steps {
+                //withSonarQubeEnv是SonarQube Scanner for Jenkins插件提供的一个函数
+                withSonarQubeEnv('sonarqube_server') {
+                    sh '/opt/sonar-scanner/bin/sonar-scanner'
+                }
+            }
+        }
+        stage('Deploy with Kubectl') {
+            steps {
+                //withCredentials是Credentials Binding Plugin插件提供的一个函数
+                withCredentials([
+                    usernamePassword(credentialsId: '75d62f1f-d4a5-4033-b0b9-eb05ffb862be', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')
+                ]) {
+                    sh 'docker build -t qiuguobin/hellogo -f Dockerfile .'
+                    sh "docker tag qiuguobin/hellogo qiuguobin/hellogo-${GIT_COMMIT}"
+                    sh "docker login --username=${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}"
+                    sh 'docker push qiuguobin/hellogo'
+                    sh "docker push qiuguobin/hellogo-${GIT_COMMIT}"
+                    
+                    //withKubeConfig是Kubernetes CLI Plugin插件提供的一个函数
+                    withKubeConfig(credentialsId: '35b0ef8a-e4e7-4c14-8738-2adf2a3a54d0') {
+                        sh 'kubectl apply -f hellogo.yaml'
+                    }
+                }
+            }
+        }
+    }
+}

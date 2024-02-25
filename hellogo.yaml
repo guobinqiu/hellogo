@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hellogo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellogo
+  namespace: hellogo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hellogo
+  template:
+    metadata:
+      labels:
+        name: hellogo
+    spec:
+      containers:
+      - name: hellogo
+        image: qiuguobin/hellogo
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellogo
+  namespace: hellogo
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+  selector:
+    name: hellogo
