@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Deploy with Kubectl') {
             steps {
-                //withCredentials是Credentials Binding Plugin插件提供的一个函数
+                //withCredentials是Credentials Binding Plugin插件提供的一个函数, 凭证类型:Username with password
                 withCredentials([
                     usernamePassword(credentialsId: '75d62f1f-d4a5-4033-b0b9-eb05ffb862be', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_TOKEN')
                 ]) {
@@ -39,7 +39,7 @@ pipeline {
                     """
                 }
 
-                //withKubeConfig是Kubernetes CLI Plugin插件提供的一个函数, 必须secret file类型
+                //withKubeConfig是Kubernetes CLI Plugin插件提供的一个函数, 凭证类型:Secret file
                 withKubeConfig(credentialsId: '35b0ef8a-e4e7-4c14-8738-2adf2a3a54d0', contextName: 'kubernetes-admin@cluster.local') {
                     sh 'kubectl apply -f hellogo.yaml'
                 }
