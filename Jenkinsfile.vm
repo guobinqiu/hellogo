@@ -39,8 +39,8 @@ pipeline {
                         -e "build_dir=../../hellogo" \
                         -e "artifact=../.target/hellogo-${GIT_COMMIT}" \
                         -e "ansible_become_password=${ANSIBLE_BECOME_PASS}" \
-                        -i ansible/inventory.ini \
-                        ansible/deploy.yml
+                        -i vm/inventory.ini \
+                        vm/deploy.yml
                     '''
                 }
             }
