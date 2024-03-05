@@ -224,8 +224,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: hellogo-listener.example.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
