@@ -85,8 +85,8 @@ spec:
           value: tcp://localhost:2375
       script: |
         #!/usr/bin/env sh
-        # cd $(workspaces.source.path)
         while ! docker info; do sleep 1; done
+        cd $(workspaces.source.path)
         docker build -t qiuguobin/hellogo -f Dockerfile .
         docker tag qiuguobin/hellogo qiuguobin/hellogo-$(params.sha)
         docker push qiuguobin/hellogo
