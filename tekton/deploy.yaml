@@ -115,7 +115,7 @@ metadata:
 spec:
   params:
     - name: sha
-      value: $(body.sha)
+      value: $(body.head_commit.id)
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
