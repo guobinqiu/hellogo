@@ -48,7 +48,7 @@ secrets:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: task-hellogo
+  name: hellogo
   namespace: hellogo
 spec:
   params:
@@ -68,7 +68,7 @@ spec:
         privileged: true
   steps:
     - name: debug
-      image: busybox
+      image: docker.m.daocloud.io/busybox
       script: |
         #!/usr/bin/env sh
         echo $(params.payload)
@@ -106,24 +106,6 @@ spec:
     - name: kubeconfig-volume
       secret:
         secretName: key-for-kube
----
-apiVersion: tekton.dev/v1beta1
-kind: TaskRun
-metadata:
-  name: taskrun-hellogo
-  namespace: hellogo
-spec:
-  serviceAccountName: hellogo-auth
-  taskRef:
-    name: task-hellogo
-  workspaces:
-    - name: source
-      emptyDir: {}
-  podTemplate:
-    hostAliases:
-      - ip: "192.168.1.10"
-        hostnames:
-          - lb.kubesphere.local
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerBinding
