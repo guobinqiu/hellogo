@@ -67,11 +67,11 @@ spec:
       securityContext:
         privileged: true
   steps:
-    # - name: debug
-    #   image: busybox
-    #   script: |
-    #     #!/usr/bin/env sh
-    #     echo $(params.GIT_COMMIT)
+    - name: debug
+      image: busybox
+      script: |
+        #!/usr/bin/env sh
+        echo $(params.GIT_COMMIT)
     - name: checkout
       image: docker.m.daocloud.io/alpine/git
       script: |
