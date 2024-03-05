@@ -52,7 +52,7 @@ metadata:
   namespace: hellogo
 spec:
   params:
-    - name: payload
+    - name: sha
       type: string
   workspaces:
     - name: source
@@ -71,7 +71,7 @@ spec:
       image: docker.m.daocloud.io/busybox
       script: |
         #!/usr/bin/env sh
-        echo $(params.payload)
+        echo $(params.sha)
     - name: checkout
       image: docker.m.daocloud.io/alpine/git
       script: |
@@ -90,9 +90,9 @@ spec:
         docker pull qiuguobin/hellogo
         docker images
         # docker build -t qiuguobin/hellogo -f Dockerfile .
-        # docker tag qiuguobin/hellogo qiuguobin/hellogo-$(params.payload.sha)
+        # docker tag qiuguobin/hellogo qiuguobin/hellogo-$(params.sha)
         # docker push qiuguobin/hellogo
-        # docker push qiuguobin/hellogo-$(params.payload.sha)
+        # docker push qiuguobin/hellogo-$(params.sha)
     - name: deploy
       image: docker.m.daocloud.io/lachlanevenson/k8s-kubectl
       volumeMounts:
@@ -114,8 +114,8 @@ metadata:
   namespace: hellogo
 spec:
   params:
-    - name: payload
-      value: $(body)
+    - name: sha
+      value: $(body.sha)
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
@@ -124,20 +124,20 @@ metadata:
   namespace: hellogo
 spec:
   params:
-    - name: payload
+    - name: sha
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
       kind: TaskRun
       metadata:
-        generateName: taskrun-hellogo-
+        generateName: hellogo-run-
         namespace: hellogo
       spec:
         serviceAccountName: hellogo-auth
         taskRef:
-          name: task-hellogo
+          name: hellogo
         params:
-          - name: payload
-            value: $(tt.params.payload)
+          - name: sha
+            value: $(tt.params.sha)
         workspaces:
           - name: source
             emptyDir: {}
