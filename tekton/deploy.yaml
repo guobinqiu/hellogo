@@ -1,0 +1,236 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hellogo
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-git
+  namespace: hellogo
+  annotations:
+    tekton.dev/git-0: github.com
+type: kubernetes.io/ssh-auth
+data:
+  ssh-privatekey: LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05dVpRQUFBQUFBQUFBQkFBQUNGd0FBQUFkemMyZ3RjbgpOaEFBQUFBd0VBQVFBQUFnRUF0ZjNvTDRrdVZnbUpiRDBaR2c0a204UmNUWjdlUlpwV0NEWkJtNHJwdTNaSzM1a3AxTGY4CjhNcTR5Q1dtb2szSjcra1I3ZklLYVBXdVh3ZVB2Yzd2TWJnNnBVRXRJWVV4WW5jWmZZNkx6V1FLVXc4cjZjTU1mTFI0eGoKa1dTVk9HYktmOTNWczZHaStTODF3ZkhrdWFSdWhNSnNtVk1mc0s3bGt5MFk1MGlMSkJlQUlNSTVRRFZseE5OdmpNa1FmZApsTVJYYWZ6aWhKQWJUdTl0akpvRlQvb0ZsWmxoRlc2WTFDVGdHODJpVW9VU253Rm1EdFU0eGhRQ0RQS1BNM3FJQVpsTEg4ClZXMGRJckRNWjNXczFTS2FmR1JFcHdDa1JSMUtleG5BazdtckVWbTB2VmFscFdKU21SNDlOa0lHUHRmRjNDMUJDazV1NEkKbjk4bDN4SkV1N3RzTnRnL1YrZEwzZUZKMThjbVJuNXA0cll2bXNiOCtnNEFrZzNqUFhvM2JDMDBNQmlkUVl5SUNpcE9lZwpFaWM3VjNyY0lHQ3psNkNsU0Q3WUs4czNwYStBc1R0Z3JIbzhOaEFrY3k0MWhweWljS25JMllQNmVYRS9uVUtvOXpDRnVwCmoxR2tJallGU21kNE03ODM1SWRrNjkvRjFEQ0MvdDhtbnJXcTlpdnJvUUFjUk5RVjZmandTbk1HbXM0c09QS3hteEVyOWoKck5CRlFnMEk1KzBINTdoSDJOeFF1NS9jaXJaN0pwM1Yrdk1NMWpIYnJnMG1PczF5bjdPMkU3dmJHanVpWHc5ZXIxbWNDRgpoK3NmbFg4YnFzbTNvOXczdDAxakYyNk1rVVI2Q0Vnc0UrZkkxcWJoRkhKS3lhNEVFQVFOUFpib01KYzdpa2IrL1RNbnZSCmtBQUFkSVFDeDl6a0FzZmM0QUFBQUhjM05vTFhKellRQUFBZ0VBdGYzb0w0a3VWZ21KYkQwWkdnNGttOFJjVFo3ZVJacFcKQ0RaQm00cnB1M1pLMzVrcDFMZjg4TXE0eUNXbW9rM0o3K2tSN2ZJS2FQV3VYd2VQdmM3dk1iZzZwVUV0SVlVeFluY1pmWQo2THpXUUtVdzhyNmNNTWZMUjR4amtXU1ZPR2JLZjkzVnM2R2krUzgxd2ZIa3VhUnVoTUpzbVZNZnNLN2xreTBZNTBpTEpCCmVBSU1JNVFEVmx4Tk52ak1rUWZkbE1SWGFmemloSkFiVHU5dGpKb0ZUL29GbFpsaEZXNlkxQ1RnRzgyaVVvVVNud0ZtRHQKVTR4aFFDRFBLUE0zcUlBWmxMSDhWVzBkSXJETVozV3MxU0thZkdSRXB3Q2tSUjFLZXhuQWs3bXJFVm0wdlZhbHBXSlNtUgo0OU5rSUdQdGZGM0MxQkNrNXU0SW45OGwzeEpFdTd0c050Zy9WK2RMM2VGSjE4Y21SbjVwNHJZdm1zYjgrZzRBa2czalBYCm8zYkMwME1CaWRRWXlJQ2lwT2VnRWljN1YzcmNJR0N6bDZDbFNEN1lLOHMzcGErQXNUdGdySG84TmhBa2N5NDFocHlpY0sKbkkyWVA2ZVhFL25VS285ekNGdXBqMUdrSWpZRlNtZDRNNzgzNUlkazY5L0YxRENDL3Q4bW5yV3E5aXZyb1FBY1JOUVY2Zgpqd1NuTUdtczRzT1BLeG14RXI5anJOQkZRZzBJNSswSDU3aEgyTnhRdTUvY2lyWjdKcDNWK3ZNTTFqSGJyZzBtT3MxeW43Ck8yRTd2YkdqdWlYdzllcjFtY0NGaCtzZmxYOGJxc20zbzl3M3QwMWpGMjZNa1VSNkNFZ3NFK2ZJMXFiaEZISkt5YTRFRUEKUU5QWmJvTUpjN2lrYisvVE1udlJrQUFBQURBUUFCQUFBQ0FBK09FNlhZZWtybFJzY25FN21yNHNvamh1WWxnWWIrY1lNRApMQ2xndnFpRXJGS2ZNem1ZdmpoUWcybXIraW1lTDNmZmVtWlZqVGs2WW55QjEzSFlPWTZNMmdwYzMwQWhzNzVnUXAvK0tvCm5VRnFQUnhLV1d3NzcyNSttOVlGL0ZFVlRCS1F3ZDY0SG9kZzF4M3NFR29qbVVTa240YWRXYlNPeGxXRmdiN203dW1YVHAKNitLd21IWnRyalhZSHhmNFRhS1ZBNG11RVNoV2J0Y1kxTXF6TVdnTURTVWp0bTRRQldVQWY5MHdmc0xCMS8wYU1BQnRqZwp3MEVwYkx0cHltU1BDbUN3czhvVGFPMlpvZWJuNG0xWEoxQWhlOUt3VmRvSWJtREdLelVWSmY5MkpPSVlBVkY0N1dsajhjClJzOFQ2Mno1VUpreWtQMmg4Ny9DWVdqSEZYTzNYMWlkRy9hSDhDWnZHSVkxTjdBWlZub0Y4L0paOFBoRU90YkFRRmhIOW8KREF5eFUxYWRUN29jV0dYM2k1NnRjQ2tiUlpJczdLN2R2c0NuS2RwWnJ1R0JDblh4dE9zOWkzT3JyQnp5VForY085QTJ0MApLWFMrTVlBTElqU2ZVRXRnMksxemQyL21ieWpUYWV2dVhTOU04aHl1cWhFc291b1ZzOHZqMnJJdUx5bTEwcnBtUVNyV01SCmEwejZBdXUxeE11bWZDZTZZNlJhY21uNjcyVkdQUG9KajhacGRyV2hpUTRYbnIremFaYkF0bW1XSXRuUDZLVHZiU2NXVVAKczZScCtndDkvaTZJV2pFUjlZM3d6blZtbTJuTXpEbklOK3psS3VzVG4vTm1BVDhOL2FkYW1FdG40UEZFZ2JGd3pvKzhrcApxcUFUUDkxejdOajVNTDdyWlBBQUFCQVFDUDcyOHVnK0FKNG1jTWtQbWtSb3RoOHNZTzFsV21oSlh5L240QzcwcXdzQkU5Ck1uQUFYN0F2dHp0NlN6eTJQdlN6M1pTQmp6ZGFuZTVQeFBiakdoSnYwVjBzYkx0SEROcG52eVZpWUZ0eFluc3FRc1FzR08KOXorQThianVQUDdZOWV3Ynd1T2pKTDZXQ2xoRTBkS2lQbUFHV0NKVlJNQnE2cmR5Q2hKOVZDL2ZSY0s2NE1aU2gvR1dtNgpCbDhQU3Rvcy9jNjFVMW13MVNhZGZQNS9ZUXlmWmtiMVlwMXY1dWRVK0JrVlJ5dmJKSFduaUpTZ25XSzFGVzlHT0ZTUnVmCkFWRTNlM0Z2VHNiS0UxM2dEU0hrMnM2SmxGamFGR1BCeENQQmNIRGtwZms1VWQxSEgzalpOZVIxRGkvU21UdUt5dm5KNlMKZ3pTVkNwczNVK3cwb1kwZkFBQUJBUURSTzhjcnoxRzhGSTJMenVGc3dsTXlsWlllT1hZVWFRVTFjTm9BcXBTQ1lWbFYwNwpvUUNQejVFcnhlRmM3ZzNlZ1NmUUdPUWxvK0RnRS9yV2x0VWVMSVZMUE1uMERVUTBKNjUrYzVYcm53R01OdTZWWmYzNjYxClVzZUVYMEtZRXFteHgrRG9vVS9WNWxSWHdneFhaVGxrMWEvU1p2RlhDQ3NCWEZCZUw2cCtjMS9TM2RULzZzcHBWUG5oZ0YKNXFYZkFKRHoyR1p2WDNjZm43U3M0a2MzdERmSTNPU205VVo1RHJ2QmtJVkIvQmo2a1kxNS9tbHI1WGs1aFhPL3dKUEh4VApGYXNOWlR5dlhoQWgyaFNLaXRTd1lEQzRhMUZnM1BiSG5JRnR0Q1oyMURXQzUyL3IvMWREUmNoL2JyYVR6ZTlKTjIxSmMyClU3VzJaQ2w2VG9jM0xmQUFBQkFRRGVxMkFYV3FFT3ZFUlRiUGF2VDBGMzU4d210cFNzTmZBVmRGMzkzRzZML1VEVHJyUHYKNWZFeHZGRlZRbFIxQ3NJdnFjTFBKT3o2WXdRZ2x0NWk5cWp5eU5UcXE5RlZpckROR2xmV0FodVptZEhmLzI3ckVaTkZOSApPN3piZGlXSXZEM0ZJUUNNVG1OVUI3MnFkekd5VDRmcWxua3pqcmh5NE4xQnJaK3RrekVHRHd0dC9ZWkpFTHF4WXFjM202CmdDZmRzbGE4MFVNc3E0WjJEQkl1UzZ6TGR0dVZXSytYZldPUVVEbzh6aDgxVElnbjNHckxaSGJYVzdhTFFsZnpLMGl5OSsKM2VaNlFBcS9oTm9tSW5hWlArWXAwSzk1d2NRd3ppN00zMnB3N1VlVHorZ0JzajZCNHlIa1drNU01ZDA5ZjNUbWthTlJ2VwpreUJOSk9PakZJY0hBQUFBRG5GeVlXTnNaVUF4TWpZdVkyOXRBUUlEQkE9PQotLS0tLUVORCBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0K
+  known_hosts: Z2l0aHViLmNvbSBzc2gtcnNhIEFBQUFCM056YUMxeWMyRUFBQUFEQVFBQkFBQUJnUUNqN25kTnhRb3dnY1FuanNoY0xycVBFaWlwaG50K1ZUVHZEUDZtSEJMOWoxYU5Va1k0VWUxZ3Z3bkdMVmxPaEdlWXJuWmFNZ1JLNitQS0NVWGFEYkM3cXRiVzhnSWtoTDdhR0NzT3IvQzU2U0pNeS9CQ1pmeGQxbld6QU94U0RQZ1ZzbWVyT0JZZk5xbHRWOS9oV0NxQnl3SU5JUis1ZElnNkpUSjcycGNFcEVqY1lnWGtFMllFRlhWMUpIbnNLZ2JMV05saFNjcWIyVW15UmtReXl0Ukx0TCszOFRHeGt4Q2ZsbU8rNVo4Q1NTTlk3R2lkak1JWjdRNHpNakEybjFuR3JsVERrendEQ3N3K3dxRlBHUUExNzljbmZHV09XUlZydWoxNno2WHl2eHZqSndiejB3UVo3NVhLNXRLU2I3Rk55ZUlFczRUVDRqaytTNGRoUGVBVUM1eStiRFlpcllnTTRHQzd1RW56dG5aeWFWV1E3QjM4MUFLNFFkcnd0NTFacUV4S2JRcFRVTm4rRWpxb1R3dnFOajRrcXg1UVVDSTBUaFMvWWtPeEpDWG1QVVdaYmhqcENnNTZpKzJhQjZDbUsySkdobjU3SzVtajBNTmRCWEE0L1dud0g2WG9QV0p6SzVOeXUyekIzbkFacCtTNWhwUXMrcDF2TjEvd3Nqaz0KZ2l0aHViLmNvbSBlY2RzYS1zaGEyLW5pc3RwMjU2IEFBQUFFMlZqWkhOaExYTm9ZVEl0Ym1semRIQXlOVFlBQUFBSWJtbHpkSEF5TlRZQUFBQkJCRW1LU0VOalFFZXpPbXhrWk15N29wS2d3RkI5bmt0NVlScllNak51RzVOODd1UmdnNkNMcmJvNXdBZFQveTZ2MG1LVjBVMncwV1oyWUIvKytUcG9ja2c9CmdpdGh1Yi5jb20gc3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9NcXFua1Z6cm0wU2RHNlVPb3FLTHNhYmdINUM5b2tXaTBkaDJsOUdLSmwK
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-docker
+  namespace: hellogo
+  annotations:
+    tekton.dev/docker-0: https://index.docker.io/v1/
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CgkJCSJhdXRoIjogImNXbDFaM1Z2WW1sdU9qRXhNVEV4TVRFeE1RPT0iCgkJfQoJfQp9
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-kube
+  namespace: hellogo
+type: Opaque
+data:
+  config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VNdmFrTkRRV1ZoWjBGM1NVSkJaMGxDUVVSQlRrSm5hM0ZvYTJsSE9YY3dRa0ZSYzBaQlJFRldUVkpOZDBWUldVUldVVkZFUlhkd2NtUlhTbXdLWTIwMWJHUkhWbnBOUWpSWVJGUkpNRTFFU1hsUFJFRXlUWHBqTVU1R2IxaEVWRTB3VFVSSmVVNVVRVEpOZW1NeFRrWnZkMFpVUlZSTlFrVkhRVEZWUlFwQmVFMUxZVE5XYVZwWVNuVmFXRkpzWTNwRFEwRlRTWGRFVVZsS1MyOWFTV2gyWTA1QlVVVkNRbEZCUkdkblJWQkJSRU5EUVZGdlEyZG5SVUpCVEU5NENqQTBUbTl1YlZsak9HbGtlVlphTTBSTlVHMVhkVkZUUTBNelUwOHpVVlptVlhCMmJWVlJTRmhCUmtkWVozQkRXbWRNT0ZKeE5XazRiRUpOUldvelVVZ0tVbVYyU2xvNVJrdEVhVTVSVUdsdlp6UnlNRkJzVlhaRkwxRmxhVFZxTldaNFkzcE9Zbk5HU21SUmNVSk5TbUpLVVZaQmNIWk5kSGRTVkROek9FcHNlQXBYTTB0S04wdEZkalIxTVc1VmRTOXRNbXhoWkZvdlVtbHlObkp0YXk5cFVVOXBjVk5UVVRCdVNrOVZZWFZ4SzJoTlZuZFNhRE5FTDJvclpHeG9ZbEZtQ2swek0wdGplSHB0ZW5ab2IyRkZTRXhqV1VaSVJtWXpXRTgzWkhCcGRUaEpVbEl2VVhVMVZYRk9RbFpCTldWRUsyaGhObnBaUkdoSVQySTNiRU4xUVZnS1lsZzRTR3h1T1hocVdYRlBUMHRDT1RCemRqWTRVbmRvWTFoTFNsWlNSV3RLZG5wVVptMWtUazluV0N0WGJWUmFjRlVyZHk5UlJHUk1SelJxVFdjeWFBbzJSRmxTV1dOV2RXVnBSVWx1TVVrM1FVOU5RMEYzUlVGQllVNWFUVVpqZDBSbldVUldVakJRUVZGSUwwSkJVVVJCWjB0clRVRTRSMEV4VldSRmQwVkNDaTkzVVVaTlFVMUNRV1k0ZDBoUldVUldVakJQUWtKWlJVWktlRzEwTkc0eVMwNDJibXMzUzNsM2MwVmplbEpSZEhSVlNtRk5RbFZIUVRGVlpFVlJVVThLVFVGNVEwTnRkREZaYlZaNVltMVdNRnBZVFhkRVVWbEtTMjlhU1doMlkwNUJVVVZNUWxGQlJHZG5SVUpCU2pKTVZGZDJURGhIV0ZwV2FFSkdhelJaUlFwQ2FGSlhWbXhhV2k5Tk4yVk1VRkkwWW5SVE1Va3JZVWhXVTBGdmN6bDZibWw1TlVaYU5FZzRibVpZUjNGU1R6QldORmhrVEdwSVNpdFZTMWt3WVVWYUNrbFZRbEZwVG5sWU1GVm9jblo0V0VWbllXUnFNUzlaUzI0NVRXdFJabUpKY3pad2IxQXZWSGhhUzJaWVNEbGpVbU5DSzFVMmRubGtia1JYZUU5aGVIVUtNalJ5ZG5sb2FsZENORTFxZW5kaGJ5ODFVSFpIYUVrNE5qVjRLemhRWlM5cGVVOXBSRGRNWTBoaFVtRklXVXB6YUc4eWEybHJXRkZ6ZUdacVNtTkxVQXBrV2pkbVNYSlNMMDVhUWxOc1NYbDVkVUV6VURJMlVtNUxTeTl0VXpCdk5rNU9UM051Y0VoVk4xTXJUa1p4Tm1WbVQwSkJNSEl2ZGxsUFJXUm9aa1JTQ25sQlNtRjNTWEpRYkhsWVdHNVRZVzVxZFdaRWN6Vm5USFZLWW1kaFZYVlVTMWRyWldNM2RVcFBRVk5zUlRGblUxVlFTMDVUU1RjNE4zWjRkbnBXTUZBS1QxbEJQUW90TFMwdExVVk9SQ0JEUlZKVVNVWkpRMEZVUlMwdExTMHRDZz09CiAgICBzZXJ2ZXI6IGh0dHBzOi8vbGIua3ViZXNwaGVyZS5sb2NhbDo2NDQzCiAgbmFtZTogY2x1c3Rlci5sb2NhbApjb250ZXh0czoKLSBjb250ZXh0OgogICAgY2x1c3RlcjogY2x1c3Rlci5sb2NhbAogICAgdXNlcjoga3ViZXJuZXRlcy1hZG1pbgogIG5hbWU6IGt1YmVybmV0ZXMtYWRtaW5AY2x1c3Rlci5sb2NhbApjdXJyZW50LWNvbnRleHQ6IGt1YmVybmV0ZXMtYWRtaW5AY2x1c3Rlci5sb2NhbApraW5kOiBDb25maWcKcHJlZmVyZW5jZXM6IHt9CnVzZXJzOgotIG5hbWU6IGt1YmVybmV0ZXMtYWRtaW4KICB1c2VyOgogICAgY2xpZW50LWNlcnRpZmljYXRlLWRhdGE6IExTMHRMUzFDUlVkSlRpQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENrMUpTVVJKVkVORFFXZHRaMEYzU1VKQlowbEpZeTlqV0hoNVZIbGhTelIzUkZGWlNrdHZXa2xvZG1OT1FWRkZURUpSUVhkR1ZFVlVUVUpGUjBFeFZVVUtRWGhOUzJFelZtbGFXRXAxV2xoU2JHTjZRV1ZHZHpCNVRrUkJlVTFxWjNkT2FrMHpUbFJTWVVaM01IbE9WRUY1VFdwamQwNXFUVE5PVkZKaFRVUlJlQXBHZWtGV1FtZE9Wa0pCYjFSRWJrNDFZek5TYkdKVWNIUlpXRTR3V2xoS2VrMVNhM2RHZDFsRVZsRlJSRVY0UW5Ka1YwcHNZMjAxYkdSSFZucE1WMFpyQ21KWGJIVk5TVWxDU1dwQlRrSm5hM0ZvYTJsSE9YY3dRa0ZSUlVaQlFVOURRVkU0UVUxSlNVSkRaMHREUVZGRlFYSlNRblZTYjAwdk1YRnhWak5LUm1FS09HaE5RamRoZDBObU0yRktLMDVoYkRack5VUkZSVzEzU1d4dlQwWnNhM0ZUT0ZCR1oyOUdkSGRTUVZOaWFXNTNkVkpJUW1zMFJ6TlhNamMxWm1nMFVRcEJjSEJ4YVhaTk15c3liWGhMY25kR1NHdE5RelkwUzFoUmJWRTFkSG92WlV0NFZuWk5RakJzTURGeVltaFVhVzUwVFZoalNWSjRkazVtU2l0S1JHNDJDa2xWYlhSMEwxWlRSVWRrWkZsWlIwZ3dMM1JRVjFGSFF5OWpSbUpvYVcxVlpERmFhRlZzZHpOMmJVNVhZek13YVhaaFNYQlZOazlPUjNWd2NsQjBXVk1LZUVwNU5sZEJWME5HZG1kWFlXVkNhM1IyZFVNM1RYa3JNVEExYzBkVGIyaDBaVmxoVUV0R2RVaGpTRVZRTTFWMmRsUTFWM3B2YkVWc1NHd3haRlV6YXdwbU5XdFVNV2xaY1ROcFNrVmpNbXAwWkRCQlJubFpiblZpWWpkWVlsWjNhWEkyTUVveGJIcE1aMUJsWTNJemJqQnlXbXhNYkZRek4ySTBhV2wxWmpWaENrSkJabWRTZDBsRVFWRkJRbTh4V1hkV1JFRlBRbWRPVmtoUk9FSkJaamhGUWtGTlEwSmhRWGRGZDFsRVZsSXdiRUpCZDNkRFoxbEpTM2RaUWtKUlZVZ0tRWGRKZDBSQldVUldVakJVUVZGSUwwSkJTWGRCUkVGbVFtZE9Wa2hUVFVWSFJFRlhaMEpUWTFweVpVbzVhV3BsY0RWUGVYTnpURUpJVFRCVlRHSldRd3BYYWtGT1FtZHJjV2hyYVVjNWR6QkNRVkZ6UmtGQlQwTkJVVVZCVlV0M1NrTjNXWGgzZW1oc2FFSkRWWFJCVmt0SU9YQjBaMFE0UmtKMmFIVm9OM1U1Q21wbGNUZEVlVGxoVkdSbk5USmpZMEZvVjNKMU4wbEVlakJGUVdaSWRtRm9SMmwzVEV0MGVqWkVVVXREUjFjd2FtaEhSVkJ0WTIxQ2QyUmpiRUZvY0cwS2NHeE9NWEF3UlUxUFNVaHRVbkJ4ZDIxd1FsQkpjU3RSVkRBd1FsaG5UVEZPVFZsWmVXRTFOM1J5YlV3ck1rODNSSEpYTjFjek5td3ZRemR2V21sSFV3cHBZVXBoVEZOa1QxYzVNRWg0YUdsdVVGVmtSRUpLVUZOTlJGRjNOMFV2VEZWa2MyeDZla0pQV25KeE9XTlNZM1ptY2tSWlZrSldVME00UWxOc1ZsQnJDbGh0YW1GVU1WbDNVV2RZV2xWNFMxcGhhVmhHTkVaMU4yeHBXRU5WVlZwSGFWbzRhVWhDV0hoS01ITjRRVGx5UnpGMVRGRkZWRlkzU3paRVUyOXNWMFVLWm5ablZrZ3lkM1J3TVdOa1puVXhSbVZVTXpNdlpHeHVSVXBEVDNSVU1tY3dhRWhTT1U5MmVFOUZkbFoxS3psU2IxRTlQUW90TFMwdExVVk9SQ0JEUlZKVVNVWkpRMEZVUlMwdExTMHRDZz09CiAgICBjbGllbnQta2V5LWRhdGE6IExTMHRMUzFDUlVkSlRpQlNVMEVnVUZKSlZrRlVSU0JMUlZrdExTMHRMUXBOU1VsRmIyZEpRa0ZCUzBOQlVVVkJjbEpDZFZKdlRTOHhjWEZXTTBwR1lUaG9UVUkzWVhkRFpqTmhTaXRPWVd3MmF6VkVSVVZ0ZDBsc2IwOUdiR3R4Q2xNNFVFWm5iMFowZDFKQlUySnBibmQxVWtoQ2F6UkhNMWN5TnpWbWFEUlJRWEJ3Y1dsMlRUTXJNbTE0UzNKM1JraHJUVU0yTkV0WVVXMVJOWFI2TDJVS1MzaFdkazFDTUd3d01YSmlhRlJwYm5STldHTkpVbmgyVG1aS0swcEVialpKVlcxMGRDOVdVMFZIWkdSWldVZElNQzkwVUZkUlIwTXZZMFppYUdsdFZRcGtNVnBvVld4M00zWnRUbGRqTXpCcGRtRkpjRlUyVDA1SGRYQnlVSFJaVTNoS2VUWlhRVmREUm5ablYyRmxRbXQwZG5WRE4wMTVLekV3TlhOSFUyOW9DblJsV1dGUVMwWjFTR05JUlZBelZYWjJWRFZYZW05c1JXeEliREZrVlROclpqVnJWREZwV1hFemFVcEZZekpxZEdRd1FVWjVXVzUxWW1JM1dHSldkMmtLY2pZd1NqRnNla3huVUdWamNqTnVNSEphYkV4c1ZETTNZalJwYVhWbU5XRkNRV1puVW5kSlJFRlJRVUpCYjBsQ1FVSkxNRkYxWWxkRGNFVTVNRWxMVGdwS2VVbG5hMk5ZU2tsR0x6aFNURGhxUnpjeGRVSmxkRGwxTURaTVNYaHBhRkJIVVVJeldtWlZUM3BPZUdSRWVEVjRaVEpMYTB4NFRHVmlRMnhHYzNaa0NtNWxaR0ZJZDJWNllqWndOV0Z6T1hWclRFMU1iRkZaTVVRdmJqVTRVVGQzUmxObVl6UnBOVEpDTHl0SGR6RkVjbkJhZUhoQlprTkhURlJNVFdGWWRYRUtNVWhFUTJ0TlltWXJZVmRUVG14S2VXVkhZV1J6TlRaMkwybE9SV3N2UVhORVlqTmlTRkZPY1ZnM1IwZEVWWFpDUkRVMU9Fa3pibVJLV0ZwMGJXbHhNZ3BUYXpkQ1dtOXlXRTV2V2pOaWJXOWtZblpXUmxnMVlVTkZXSEZzU0ZwMmRGTk9lRXhpY2xKSVpWaE1ObWhSUjBabWVVb3dZbTFQVURsYVVVczVObTFKQ21FMmJ6UlZZbVpwVEhKS1MwNTRZMnBpVTNKUmFGTlhNR05RU0hJM1lWbFlNMGxZY1dFMllYcHBWelpSYzFsTmJVSmpZMlJ6Y21wUVdXNUdVamxGT1hjS1lWSkZUbFJtUlVObldVVkJlRXA2WkdGb2FXVTFWSFJtTUZvM09WbEZRakpuTDJnNGNuUTBkVUpxU0hZclNUSk5XVEl5WWpRNVNUTkRZMkpRTmxGUFdBb3dkVGxUZW1OMlozZG5RakVyV21zck0xRnJSMVJpY21Ga2FFUjJlVmM1Y2tscE4wTnBjVFF5TVhoUmNXb3dkU3RGWW1SR1FXaGFaMVJ3YUhOb2QwRllDbU5OZVZrMGVtSTFiR29yTW01UFpWRnROVkpvWW5KM1dtZHFhRkk0V2taQlpHSTBNVnBSUW5kSksyUlBOVkZ0YTBJM1NEaGtXbXREWjFsRlFUUldZWEVLYVdGV1dWaEpVMWcwWWt4dlJsTlZSMnRvUW5jeGJrVXJaVVJqWkRaNlpUVkRiR2xTV21oTVVFTlFablpEYVRBMFMwYzRhVVpLV1ZONFVHdEVOR0kzTUFwMmRFVTFUR2xQYm0weFVFWkZPR3QzY1c0eVpUTktTazR4VWpsek9HTm9SRWgyZDFZMUswNXdNR1JwV2tJeVRGSm9OMlV5VGxWQlVXaFJOV2RLVFU5TUNtUmtZV2RQTWxKUlJUTmhaSGxXWWxoV1dqVndkV0kzYjBjNVJWUlJlREExY1hCRFR6aE9PRU5uV1VKWVNtUlRObkF3YTJaQlJ6bGlXV1ZoWWxkR1pIWUtOMW9yVDJaNWNsWlZhVTB3THpoRVptWlpSV2QyVm1ad0wwaGlRbkZRWTA0MU1HcEVjMWd2YUZoblZITTJja1pFYkdwR01rZE5SMjF1WVVVM2JubG9WUXByV0dSdWMzZHlXakJNVjBGeFMydEtMM3B6VjFSellraGlObUZFVUVaWmJtbElhVzlHWjBWU1UxSktkbVl2UkVsR1ZVRlBjbXM1T0U5bGVWRmlOM0Z5Q25SbVJFTTBVM1pVY21vMU5VcFJibEUwTWt0ek1sRkxRbWREZFc5R09HZDBTVmsxYWtobE0ySk9TREpOVHpsaGJXMXpXR2hGVFVwSWJ6Sk9SREl6VXpJS2NtZDZRbXBvZW14MFFXdGljelp4V25oV1pVcHlOemczYnpGWWEwbG9VM0ZCYkV3dlJUSlVWR1ZRV1ZwWU0xWlpaWGxQZFhOTFpXVjJRVTl1TUdWRk5RbzBOa05YWmxwVWNsTjBTMVZuV2xkNWMxQnNiVWhSTURaUFRWSkhiMnRzUms5TGRuQkNiRFpQT1RScVptRjZObkZRZWprclZHZGxPVzVQWVN0NlkwcFBDakpZUzNaQmIwZEJTemxOTjBFelVXMDRhelJOYUdkTVdtaHRNRzFNT0ZoeFlXeHRUVWRhVXpoWlkyTXdRVEJFV0RoaFVqQTVVRzF0VldoRlZYVlpRbU1LVldWUVRqZHdNR2RzVDJoNWNsWjRSazUyU2t4cU1XaE1SMlpEU0RsQ1VFZGFhbEJxVkdKNVVEQmtjVTFyTm1KUGRrUXZiVnBZY0VscFdUZDRRemR5YXdwTEsxUlJSR0l6WkVwRk56VnljbThyYlRZMU1XbFBOM0YyTVRNMlZsRldXaTh4Y25sdmJuSm5ZMVJpYXpKS1prOXNlVTA5Q2kwdExTMHRSVTVFSUZKVFFTQlFVa2xXUVZSRklFdEZXUzB0TFMwdENnPT0K
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hellogo-auth
+  namespace: hellogo
+secrets:
+  - name: key-for-git
+  - name: key-for-docker
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-hellogo
+  namespace: hellogo
+spec:
+  params:
+    - name: GIT_COMMIT
+      type: string
+  workspaces:
+    - name: source
+  sidecars:
+    - name: docker-dind
+      image: docker.m.daocloud.io/docker:dind
+      env:
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
+        - name: DOCKER_HOST
+          value: tcp://0.0.0.0:2375
+      securityContext:
+        privileged: true
+  steps:
+    # - name: debug
+    #   image: busybox
+    #   script: |
+    #     #!/usr/bin/env sh
+    #     echo $(params.GIT_COMMIT)
+    - name: checkout
+      image: docker.m.daocloud.io/alpine/git
+      script: |
+        #!/usr/bin/env sh
+        cd $(workspaces.source.path)
+        git clone git@github.com:guobinqiu/hellogo.git .
+    - name: build
+      image: docker.m.daocloud.io/docker
+      env:
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
+      script: |
+        #!/usr/bin/env sh
+        # cd $(workspaces.source.path)
+        while ! docker info; do sleep 1; done
+        docker pull qiuguobin/hellogo
+        docker images
+        # docker build -t qiuguobin/hellogo -f Dockerfile .
+        # docker tag qiuguobin/hellogo qiuguobin/hellogo-$(params.GIT_COMMIT)
+        # docker push qiuguobin/hellogo
+        # docker push qiuguobin/hellogo-$(params.GIT_COMMIT)
+    - name: deploy
+      image: docker.m.daocloud.io/lachlanevenson/k8s-kubectl
+      volumeMounts:
+        - name: kubeconfig-volume
+          mountPath: /root/.kube
+      script: |
+        #!/usr/bin/env sh
+        cd $(workspaces.source.path)
+        kubectl apply -f k8s/deploy.yaml
+  volumes:
+    - name: kubeconfig-volume
+      secret:
+        secretName: key-for-kube
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-hellogo
+  namespace: hellogo
+spec:
+  serviceAccountName: hellogo-auth
+  taskRef:
+    name: task-hellogo
+  workspaces:
+    - name: source
+      emptyDir: {}
+  podTemplate:
+    hostAliases:
+      - ip: "192.168.1.10"
+        hostnames:
+          - lb.kubesphere.local
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: hellogo-binding
+  namespace: hellogo
+spec:
+  params:
+    - name: GIT_COMMIT
+      value: $(body.pull_request.head.sha)
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: hellogo-template
+  namespace: hellogo
+spec:
+  params:
+    - name: GIT_COMMIT
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: TaskRun
+      metadata:
+        generateName: taskrun-hellogo-
+        namespace: hellogo
+      spec:
+        serviceAccountName: hellogo-auth
+        taskRef:
+          name: task-hellogo
+        params:
+          - name: GIT_COMMIT
+            value: $(tt.params.GIT_COMMIT)
+        workspaces:
+          - name: source
+            emptyDir: {}
+        podTemplate:
+          hostAliases:
+            - ip: "192.168.1.10"
+              hostnames:
+                - lb.kubesphere.local
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hellogo-rbac
+  namespace: hellogo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: triggers-hellogo-eventlistener-binding
+  namespace: hellogo
+subjects:
+  - kind: ServiceAccount
+    name: hellogo-rbac
+    namespace: hellogo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-roles
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: triggers-hellogo-eventlistener-clusterbinding
+subjects:
+  - kind: ServiceAccount
+    name: hellogo-rbac
+    namespace: hellogo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-clusterroles
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: hellogo-listener
+  namespace: hellogo
+spec:
+  serviceAccountName: hellogo-rbac
+  triggers:
+    - name: hellogo-trigger
+      bindings:
+        - ref: hellogo-binding
+      template:
+        ref: hellogo-template
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-hellogo-listener
+  namespace: hellogo
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: hellogo-listener.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: el-hellogo-listener
+                port:
+                  number: 8080
