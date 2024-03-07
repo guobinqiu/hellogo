@@ -11,11 +11,6 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'go build main.go' //只是为了保证编译通过
-            }
-        }
         stage('Static Analysis') {
             steps {
                 //withSonarQubeEnv是SonarQube Scanner for Jenkins插件提供的一个函数
@@ -24,7 +19,8 @@ pipeline {
                 }
             }
         }
-        stage('Deploy with Kubectl') {
+
+        stage('Build') {
             steps {
                 //withCredentials是Credentials Binding Plugin插件提供的一个函数, 凭证类型:Username with password
                 withCredentials([
@@ -38,10 +34,14 @@ pipeline {
                     docker push qiuguobin/hellogo-${GIT_COMMIT}
                     """
                 }
+            }
+        }
 
+        stage('Deploy') {
+            steps{
                 //withKubeConfig是Kubernetes CLI Plugin插件提供的一个函数, 凭证类型:Secret file
                 withKubeConfig(credentialsId: '35b0ef8a-e4e7-4c14-8738-2adf2a3a54d0', contextName: 'kubernetes-admin@cluster.local') {
-                    sh 'kubectl apply -f k8s/deploy.yaml'
+                    sh 'kubectl apply -f kube/deploy.yaml'
                 }
             }
         }

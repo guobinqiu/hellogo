@@ -10,13 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'rm -rf .target' //清理旧打包
-                sh 'go build -o .target/hellogo-${GIT_COMMIT} main.go' //打包
-                archiveArtifacts artifacts: ".target/hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
-            }
-        }
         stage('Static Analysis') {
             steps {
                 //withSonarQubeEnv是SonarQube Scanner for Jenkins插件提供的一个函数
@@ -25,6 +18,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Build') {
+            steps {
+                sh 'rm -rf .target' //清理旧打包
+                sh 'go build -o .target/hellogo-${GIT_COMMIT} main.go' //打包
+                archiveArtifacts artifacts: ".target/hellogo-${GIT_COMMIT}", fingerprint: true //加入本地制品库
+            }
+        }
+       
         stage('Deploy with Ansible') {
             steps {
                 //withCredentials是Credentials Binding Plugin插件提供的一个函数
