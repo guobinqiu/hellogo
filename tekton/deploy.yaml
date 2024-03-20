@@ -89,9 +89,9 @@ spec:
         while ! docker info; do sleep 1; done
         cd $(workspaces.source.path)
         docker build -t qiuguobin/hellogo -f Dockerfile .
-        docker tag qiuguobin/hellogo qiuguobin/hellogo-$(params.sha)
+        docker tag qiuguobin/hellogo qiuguobin/hellogo:$(params.sha)
         docker push qiuguobin/hellogo
-        docker push qiuguobin/hellogo-$(params.sha)
+        docker push qiuguobin/hellogo:$(params.sha)
     - name: deploy
       image: docker.m.daocloud.io/lachlanevenson/k8s-kubectl
       volumeMounts:
@@ -100,7 +100,7 @@ spec:
       script: |
         #!/usr/bin/env sh
         cd $(workspaces.source.path)
-        kubectl apply -f k8s/deploy.yaml
+        kubectl apply -f kube/deploy.yaml
   volumes:
     - name: kubeconfig-volume
       secret:
